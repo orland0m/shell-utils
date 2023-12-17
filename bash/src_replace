@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ "$#" -ne 2 ]
+then
+    echo "Invalid arguments, usage: $(basename $0) <old pattern> <new pattern>"
+    exit 1
+fi
+
+OLD_PATTERN=$1
+NEW_PATTERN=$2
+
+ag  -lr --print0 "$OLD_PATTERN" * | xargs -I {} -0 sed -i '' -e "s/$OLD_PATTERN/$NEW_PATTERN/" {}
