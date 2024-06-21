@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+COMMAND=${@:1}
+echo "DEBUG: $COMMAND"
+
+for folder in $(find . -depth 1 -type d -print); do
+    echo $folder | xargs -I {} $COMMAND # || exit 1
+done
